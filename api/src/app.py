@@ -11,6 +11,8 @@ from services.database import JSONDatabase
 from datetime import datetime, timedelta
 from fastapi import Query
 
+from fastapi.middleware.cors import CORSMiddleware
+
 class Quote(TypedDict):
     name: str
     message: str
@@ -19,21 +21,25 @@ class Quote(TypedDict):
 
 database: JSONDatabase[list[Quote]] = JSONDatabase("data/database.json")
 
-
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncIterator[None]:
-    """Handle database management when running app."""
     if "quotes" not in database:
-        print("Adding quotes entry to database")
         database["quotes"] = []
-
     yield
-
     database.close()
-
 
 app = FastAPI(lifespan=lifespan)
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173"
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.post("/quote")
 def post_message(name: str = Form(), message: str = Form()) -> Quote:
