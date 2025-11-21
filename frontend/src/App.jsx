@@ -4,6 +4,8 @@ import QuoteCard from "./components/QuoteCard";
 
 function App() {
 	const [quotes, setQuotes] = useState([]);
+	const [name, setName] = useState("");
+	const [message, setMessage] = useState("");
 
 	//fetcing quotes when page loads
 	useEffect(() => {
@@ -21,6 +23,33 @@ function App() {
 		}
 	};
 
+	//no refresh handlesubmit
+	const handleSubmit = async (e) => {
+		e.preventDefault();  // stop page refresh
+	
+		try {
+			const response = await fetch("http://127.0.0.1:8000/quote", {
+				method: "POST",
+				body: new URLSearchParams({
+					name,
+					message
+				})
+			});
+	
+			const newQuote = await response.json();
+	
+			// Add new quote to UI immediately
+			setQuotes((prev) => [...prev, newQuote]);
+	
+			
+			setName("");
+			setMessage("");
+	
+		} catch (err) {
+			console.error("Failed to submit quote:", err);
+		}
+	};
+
 	return (
 		<div className="App">
 			{/* TODO: include an icon for the quote book */}
@@ -28,11 +57,27 @@ function App() {
 
 			<h2>Submit a quote</h2>
 			{/* TODO: implement custom form submission logic to not refresh the page */}
-			<form action="/api/quote" method="post">
-				<label htmlFor="input-name">Name</label>
-				<input type="text" name="name" id="input-name" required />
-				<label htmlFor="input-message">Quote</label>
-				<input type="text" name="message" id="input-message" required />
+			<form onSubmit={handleSubmit}>
+			<label htmlFor="input-name">Name</label>
+			<input
+				type="text"
+				name="name"
+				id="input-name"
+				value={name}
+				onChange={(e) => setName(e.target.value)}
+				required
+			/>
+
+			<label htmlFor="input-message">Quote</label>
+			<input
+				type="text"
+				name="message"
+				id="input-message"
+				value={message}
+				onChange={(e) => setMessage(e.target.value)}
+				required
+			/>
+
 				<button type="submit">Submit</button>
 			</form>
 
