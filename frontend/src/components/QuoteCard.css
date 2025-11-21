@@ -1,24 +1,42 @@
-.quote-card {
-	padding: 12px 16px;
-	margin-bottom: 12px;
-	border-radius: 8px;
-	background: #f3f3f3;
-	border: 1px solid #ddd;
+/* ================================
+   QUOTE CARD
+   ================================ */
+   .quote-card {
+    background: #ffcb00; 
+    color: #001a33; 
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    text-align: left;
+    box-shadow: 0 4px 0 #e0b200; 
+    transition: transform 0.1s ease;
+    break-inside: avoid;   
+    width: 100%;
+    display: inline-block; 
 }
 
+.quote-card:hover {
+    transform: translateY(-2px);
+}
+
+/* ================================
+   QUOTE TEXT
+   ================================ */
 .quote-message {
-	font-size: 1.1rem;
-	font-weight: 500;
-	margin: 0 0 6px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 8px;
 }
 
 .quote-name {
-	font-size: 0.9rem;
-	color: #5a5a5a;
-	margin: 0 0 4px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #003f7f;
+    margin-bottom: 4px;
 }
 
 .quote-time {
-	font-size: 0.8rem;
-	color: #888;
+    font-size: 0.8rem;
+    color: #002a55;
+    opacity: 0.8;
 }

@@ -1,0 +1,104 @@
+/* ================================
+   GLOBAL / RESET
+   ================================ */
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Inter, system-ui, sans-serif;
+}
+
+body {
+    background-color: #003f7f; /* UCI light blue */
+    color: #001a33; /* deep navy text */
+    padding: 20px;
+}
+
+/* ================================
+   APP CONTAINER
+   ================================ */
+.App {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* ================================
+   LOGO
+   ================================ */
+.logo {
+    width: 90px;
+    height: auto;
+    margin: 0 auto 15px;
+    display: block;
+}
+
+/* ================================
+   HEADINGS
+   ================================ */
+h1 {
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 25px;
+}
+
+h2 {
+    margin-top: 25px;
+    margin-bottom: 15px;
+    color: #ffcb00; /* UCI gold */
+}
+
+/* ================================
+   FORM STYLING
+   ================================ */
+form {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(6px);
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    text-align: left;
+    margin: 10px 0 5px;
+    color: #ffffff;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 2px solid #002a55;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #ffcb00;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    color: #001a33;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #ffd633;
+}
+
+/* ================================
+   QUOTES SECTION
+   ================================ */
+   .messages {
+    column-count: 2;        
+    column-gap: 20px;         
+    width: 100%;
+    margin-top: 20px;
+}

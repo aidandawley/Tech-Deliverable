@@ -56,6 +56,11 @@ function App() {
 	return (
 		<div className="App">
 			{/* TODO: include an icon for the quote book */}
+			<img 
+				src="/Logo.png" 
+				alt="Hack at UCI logo" 
+				className="logo"
+			/>
 			<h1>Hack at UCI Tech Deliverable</h1>
 
 			<h2>Submit a quote</h2>
