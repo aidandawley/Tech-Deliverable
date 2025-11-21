@@ -6,16 +6,19 @@ function App() {
 	const [quotes, setQuotes] = useState([]);
 	const [name, setName] = useState("");
 	const [message, setMessage] = useState("");
+	const [filter, setFilter] = useState("all");
 
 	//fetcing quotes when page loads
 	useEffect(() => {
-		fetchQuotes();
-	}, []);
+		fetchQuotes(filter);
+	}, [filter]);
 
 	//backend get request
-	const fetchQuotes = async () => {
+	const fetchQuotes = async (age = filter) => {
 		try {
-			const response = await fetch("http://127.0.0.1:8000/quotes?max_age=all");
+			const response = await fetch(
+				`http://127.0.0.1:8000/quotes?max_age=${age}`
+			);
 			const data = await response.json();
 			setQuotes(data);
 		} catch (err) {
@@ -82,6 +85,17 @@ function App() {
 			</form>
 
 			<h2>Previous Quotes</h2>
+			<label>Show quotes from:</label>
+			<select
+				value={filter}
+				onChange={(e) => setFilter(e.target.value)}
+				style={{ marginLeft: "10px", marginBottom: "20px" }}
+			>
+				<option value="all">All time</option>
+				<option value="week">Last week</option>
+				<option value="month">Last month</option>
+				<option value="year">Last year</option>
+			</select>
 			{/* TODO: Display the actual quotes from the database */}
 			<div className="messages">
 				{quotes.map((q, i) => (
